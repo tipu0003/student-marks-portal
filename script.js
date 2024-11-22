@@ -16,15 +16,15 @@ function decrypt(data) {
 const marksData = {
     'ENR001': {
         lastname: encrypt('Smith'),
-        marks: encrypt('Subject A: 85\nSubject B: 90')
+        marks: encrypt('QT: 85\nRPE: 90')
     },
     'ENR002': {
         lastname: encrypt('Johnson'),
-        marks: encrypt('Subject A: 78\nSubject B: 88')
+        marks: encrypt('QT: 78\nRPE: 88')
     },
     'ENR003': {
         lastname: encrypt('Williams'),
-        marks: encrypt('Subject A: 92\nSubject B: 87')
+        marks: encrypt('QT: 92\nRPE: 87')
     },
     // Add more student data as needed
 };

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include CryptoJS Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Marks Portal</h1>
+        <form id="marksForm">
+            <label for="enrollment">Enrollment Number:</label>
+            <input type="text" id="enrollment" name="enrollment" required>
+
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required>
+
+            <button type="submit">View Marks</button>
+        </form>
+        <div id="result" class="hidden">
+            <h2>Your Marks:</h2>
+            <pre id="marksDisplay"></pre>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

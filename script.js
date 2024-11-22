@@ -13,17 +13,38 @@ function decrypt(data) {
 }
 
 // Example Marks Data (Encrypted)
+// Both Enrollment and Application Numbers map to the same student data
 const marksData = {
+    // Enrollment Numbers
     'ENR001': {
-        lastname: encrypt('Smith'),
+        firstName: encrypt('Tarun'),
+        lastName: encrypt('Singh'),
         marks: encrypt('QT: 85\nRPE: 90')
     },
     'ENR002': {
-        lastname: encrypt('Johnson'),
+        firstName: encrypt('John'),
+        lastName: encrypt('Doe'),
         marks: encrypt('QT: 78\nRPE: 88')
     },
     'ENR003': {
-        lastname: encrypt('Williams'),
+        firstName: encrypt('Alice'),
+        lastName: encrypt('Williams'),
+        marks: encrypt('QT: 92\nRPE: 87')
+    },
+    // Application Numbers
+    'APP001': {
+        firstName: encrypt('Tarun'),
+        lastName: encrypt('Singh'),
+        marks: encrypt('QT: 85\nRPE: 90')
+    },
+    'APP002': {
+        firstName: encrypt('John'),
+        lastName: encrypt('Doe'),
+        marks: encrypt('QT: 78\nRPE: 88')
+    },
+    'APP003': {
+        firstName: encrypt('Alice'),
+        lastName: encrypt('Williams'),
         marks: encrypt('QT: 92\nRPE: 87')
     },
     // Add more student data as needed
@@ -32,21 +53,36 @@ const marksData = {
 document.getElementById('marksForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
+    const firstName = document.getElementById('firstname').value.trim().toLowerCase();
     const enrollment = document.getElementById('enrollment').value.trim();
-    const lastname = document.getElementById('lastname').value.trim();
+    const application = document.getElementById('application').value.trim();
 
-    if (marksData.hasOwnProperty(enrollment)) {
-        const storedLastName = decrypt(marksData[enrollment].lastname).toLowerCase();
-        const enteredLastName = lastname.toLowerCase();
+    // Validate that at least one identifier is provided
+    if (!enrollment && !application) {
+        alert('Please enter either Enrollment Number or Application Number.');
+        return;
+    }
 
-        if (storedLastName === enteredLastName) {
-            const marks = decrypt(marksData[enrollment].marks);
+    let identifier = '';
+    if (enrollment) {
+        identifier = enrollment;
+    } else {
+        identifier = application;
+    }
+
+    if (marksData.hasOwnProperty(identifier)) {
+        const storedFirstName = decrypt(marksData[identifier].firstName).toLowerCase();
+        const storedLastName = decrypt(marksData[identifier].lastName).toLowerCase();
+        const enteredFirstName = firstName;
+
+        if (storedFirstName === enteredFirstName) {
+            const marks = decrypt(marksData[identifier].marks);
             document.getElementById('marksDisplay').innerText = marks;
             document.getElementById('result').classList.remove('hidden');
         } else {
-            alert('Incorrect Last Name.');
+            alert('Incorrect First Name.');
         }
     } else {
-        alert('Enrollment Number not found.');
+        alert('Identifier not found.');
     }
 });
